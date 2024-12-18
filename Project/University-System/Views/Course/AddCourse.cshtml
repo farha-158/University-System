@@ -1,0 +1,43 @@
+@model List<Department>
+
+
+<link href="~/css/Form.css" rel="stylesheet" />
+
+<div class="form-container">
+    <h2>Course Registration</h2>
+    <form action="AddCourse" method="post">
+
+        <div class="form-group">
+            <label for="CourseName">Name</label>
+            <input type="text" id="CourseName" name="CourseName" placeholder="Course Name..." required>
+        </div>
+
+        <div class="form-group">
+            <label for="CreditHours">Credit Hours</label>
+            <input type="number" id="CreditHours" name="CreditHours" placeholder="Credit Hours..." required>
+        </div>
+
+        <div class="form-group">
+            <label for="DepartId">Select The Department</label>
+            <select id="DepartId" name="DepartId">
+                @foreach (Department department in Model)
+                {
+                    <option value="@department.DepartId">@department.DepartmentName</option>
+                }
+            </select>
+        </div>
+
+        
+
+        <div class="form-group">
+            <label for="HaveSec">
+                <input type="checkbox" value="true" id="HaveSec" name="HaveSec" checked />
+                Have Section
+            </label>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Register</button>
+        </div>
+    </form>
+<
