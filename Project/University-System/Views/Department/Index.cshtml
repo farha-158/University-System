@@ -1,0 +1,42 @@
+@model List<Department>
+
+<link href="~/css/Table.css" rel="stylesheet" />
+
+<a class="btn btn-primary add-student-btn" asp-area="" asp-controller="Department" asp-action="AddDepartment">
+    Add New Department
+</a>
+
+
+
+
+<br />
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Department Name</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (Department department in Model)
+    {
+        <tr>
+            <td>
+                @department.DepartId
+            </td>
+            <td>
+                @department.DepartmentName
+            </td>
+            <td>
+                <a href="/Department/Delete/@department.DepartId" class="delete-link">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
