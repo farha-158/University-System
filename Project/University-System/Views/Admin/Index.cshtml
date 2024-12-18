@@ -1,0 +1,56 @@
+@model List<Admin>
+
+<link href="~/css/Table.css" rel="stylesheet" />
+
+<a class="btn btn-primary add-student-btn" asp-area="" asp-controller="Admin" asp-action="AddAdmin">
+    Add New Admin
+</a>
+
+
+
+<br />
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Salary</th>
+            @* <th>Courses</th> *@
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Admin admin in Model)
+        {
+            <tr>
+                <td>
+                    @admin.AdminId
+                </td>
+                <td>
+                    @admin.Name
+                </td>
+                <td>
+                    @admin.Role
+                </td>
+                <td>@admin.Email</td>
+                <td>@admin.SalaryDetails</td>
+                @* <td> *@
+                @* </td> *@
+
+                <td>
+                    <a href="/Admin/Delete/@admin.AdminId" class="delete-link">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+
+
+</table>
+
