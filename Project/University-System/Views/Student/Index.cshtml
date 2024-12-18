@@ -1,0 +1,60 @@
+@model List< Student>
+
+
+
+<link href="~/css/Table.css" rel="stylesheet" />
+
+<a class="btn btn-primary add-student-btn" asp-area="" asp-controller="Student" asp-action="Create">
+    Add New Student
+</a>
+
+<br />
+<table>
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>GPA</th>
+            <th>Department</th>
+           
+            <th>Delete</th>
+        </tr>
+    
+
+   
+        @foreach (Student student in Model)
+        {
+            <tr>
+                <td>
+                    @student.ID
+                </td>
+                <td>
+                    @student.Name
+                </td>
+                <td>
+                @{
+                    var today = DateTime.Today;
+                    var age = today.Year - student.DateOfBirth.Year;
+                    if (student.DateOfBirth.Date > today.AddYears(-age)) age--;
+                    @age
+                }
+
+                </td>
+                <td>@student.Email</td>
+                <td>@student.GPA</td>
+                <td>@student.DepartmentId</td>
+               
+                <td>
+                    <a href="/Student/Delete/@student.ID" class="delete-link">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                </td>
+            </tr>
+       
+
+        }
+
+</table>
+
