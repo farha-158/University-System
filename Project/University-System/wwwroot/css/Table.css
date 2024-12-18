@@ -1,0 +1,74 @@
+.add-student-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .add-student-btn:hover {
+        background-color: #0056b3;
+        text-decoration: none;
+        transform: scale(1.05);
+    }
+
+    .add-student-btn:active {
+        background-color: #004080;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+table {
+     width: 100%;
+     border-collapse: collapse;
+     margin: 20px 0;
+     background-color: #fff;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+     text-align: center;
+     padding: 12px;
+     border: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+tr:nth-child(even) {
+      background-color: #f9f9f9;
+}
+
+tr:hover {
+      background-color: #f1f1f1;
+}
+
+caption {
+     font-size: 1.5em;
+     margin-bottom: 10px;
+     color: #333;
+}
+
+.delete-link {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.delete-link:hover {
+    color: #a71d2a;
+}
+
+.fas.fa-trash-alt {
+    margin-right: 5px;
+}
