@@ -1,0 +1,21 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SysUniPro.Models
+{
+    public class Faculty
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int FaId { get; set; }  // تم تعديل إلى خاصية عامة
+        public string FaName { get; set; }  // تم تعديل الاسم
+        public string Email { get; set; }  // تم إضافة Email
+        public int PhoneNumber { get; set; }  // تم تعديل النوع إلى string لتمثيل الأرقام بشكل صحيح
+        public decimal SalaryDetails { get; set; }  // تم تعديل النوع إلى decimal
+
+        // Many-to-Many relationship with Course
+        public virtual ICollection<Course> Courses { get; set; }  // تم تعديل لتكون قائمة من الكائنات Course
+
+        
+    }
+}
