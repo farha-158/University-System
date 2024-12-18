@@ -1,0 +1,30 @@
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SysUniPro.Models
+{
+    public class Student
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; } // مفتاح أساسي للـ Entity Framework
+        public string Name { get; set; } // خاصية عامة
+        public DateTime DateOfBirth { get; set; }
+        public string Email { get; set; }
+        public bool EnrollmentStatus { get; set; }
+        public string GPA { get; set; }
+        public int DepartmentId { get; set; }  // معرف القسم (المفتاح الأجنبي)
+        public Department? Department { get; set; }
+
+        // علاقة Many-to-Many مع Course
+        public virtual ICollection<Course> Courses { get; set; }
+
+        // علاقة Many-to-Many مع Faculty
+
+        // علاقات مع الكائنات الوسيطة (StudentCourse و StudentFaculty)
+        public virtual ICollection<StudentCourse> StudentCourses { get; set; }
+
+        
+    }
+}
