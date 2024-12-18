@@ -1,0 +1,59 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using SysUniPro.Models;
+
+namespace SysUniPro.Context
+{
+    public class MyContext : DbContext
+    {
+        public MyContext(DbContextOptions<MyContext> mycontext) : base(mycontext) { }
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Faculty> Faculties { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
+        {
+            base.OnConfiguring(dbContextOptionsBuilder);
+
+            // قراءة الإعدادات من ملف appsettings.json
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot config = builder.Build();
+
+            var connectionString = config.GetConnectionString("MyDbConnection");
+            dbContextOptionsBuilder.UseSqlServer(connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            // تحديد المفتاح الأساسي المركب لجدول StudentCourse
+            builder.Entity<StudentCourse>()
+                .HasKey(sc => new { sc.StudentId, sc.CourseId });
+
+            // إعداد العلاقات مع تعطيل Cascade Delete لتجنب المشاكل
+            builder.Entity<StudentCourse>()
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.StudentCourses)
+                .HasForeignKey(sc => sc.StudentId)
+                .OnDelete(DeleteBehavior.Restrict); // تجنب الحذف المتسلسل
+
+
+            builder.Entity<Faculty>()
+                .Property(f => f.SalaryDetails)
+                .HasPrecision(18, 4); // تعيين Precision إلى 18 و Scale إلى 4
+
+            builder.Entity<Admin>()
+                .Property(a => a.SalaryDetails)
+                .HasPrecision(18, 4);
+
+
+            base.OnModelCreating(builder);
+        }
+    }
+}
