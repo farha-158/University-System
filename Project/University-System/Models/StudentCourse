@@ -1,0 +1,14 @@
+
+namespace SysUniPro.Models
+{
+    public class StudentCourse
+    {
+       
+            public int StudentId { get; set; }  // FK to Student
+            public Student Student { get; set; }
+
+            public int CourseId { get; set; }  // FK to Course
+            public Course Course { get; set; }
+    }
+}
+
